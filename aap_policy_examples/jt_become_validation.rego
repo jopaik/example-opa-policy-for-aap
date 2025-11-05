@@ -10,9 +10,11 @@ default jt_become_validation := {
 
 # Validate that job template name has correct organization and project name prefixes
 jt_become_validation := result if {
-
 	# Check jt_become
-	input.job_template.become_enabled == true
+	jt_become := object.get(input, ["job_template", "become_enabled"], "")
+
+	# Check if become is true
+	jt_become == true
 
 	result := {
 		"allowed": false,
