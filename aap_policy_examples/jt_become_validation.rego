@@ -13,7 +13,6 @@ jt_naming_validation := result if {
     # Extract values from input
     jt_become := object.get(input, ["job_template", "become_enabled"], "")
 
-
     # Check if job template name starts with expected prefix
     not jt_become == False
 
