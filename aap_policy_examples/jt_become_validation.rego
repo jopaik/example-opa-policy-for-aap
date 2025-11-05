@@ -6,7 +6,6 @@ default become_false := {
 	"allowed": true,
 	"violations": [],
 }
-job_template.become_enabled := false
 
 become_false := {
 	"allowed": false,
