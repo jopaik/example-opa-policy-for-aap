@@ -7,9 +7,15 @@ default become_false := {
 	"violations": [],
 }
 
-become_false := {
-	"allowed": false,
-	"violations": ["Become user is not allow to launch jobs"],
-} if {
-	input.become_enabled == true
+become_false := result if {
+	# get become_enabled
+	input_become := object.get(input, ["become_enabled"], {})
+
+	# check if become is true
+	input_become == true
+
+	result := {
+		"allowed": false,
+		"violations": [sprintf("Become run not allowed", [])],
+	}
 }
