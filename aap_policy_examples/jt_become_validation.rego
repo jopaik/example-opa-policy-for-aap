@@ -14,7 +14,7 @@ jt_become_validation := result if {
 	jt_become := object.get(input, ["job_template", "privilege_escalation"], "")
 
 	# Check if become is true
-	jt_become == true
+	not jt_become == false
 
 	result := {
 		"allowed": false,
