@@ -11,5 +11,5 @@ become_false := {
 	"allowed": false,
 	"violations": ["Become user is not allow to launch jobs"],
 } if {
-	input.job_template.become_enabled == true
+	input.become_enabled == true
 }
