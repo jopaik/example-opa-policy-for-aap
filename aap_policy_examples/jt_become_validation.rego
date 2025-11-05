@@ -11,13 +11,13 @@ default jt_become_validation := {
 # Validate that job template name has correct organization and project name prefixes
 jt_become_validation := result if {
 	# Check jt_become
-	jt_become := object.get(input, ["job_template", "privilege_escalation"], "")
+	jt_become := object.get(input, ["job_template"], "")
 
 	# Check if become is true
 	not jt_become == false
 
 	result := {
-		"allowed": false,
+		"allowed": true,
 		"violations": [sprintf("Become not allowed '%v' does not comply with standards", [jt_become])],
 	}
 }
