@@ -17,7 +17,7 @@ jt_become_validation := result if {
 	not jt_become == false
 
 	result := {
-		"allowed": true,
+		"allowed": false,
 		"violations": [sprintf("Become not allowed '%v' does not comply with standards", [jt_become])],
 	}
 }
