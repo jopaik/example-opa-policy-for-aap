@@ -2,22 +2,15 @@ package aap_policy_examples
 
 import rego.v1
 
-# Default policy response indicating allowed status with no violations
-default jt_become_validation := {
-    "allowed": true,
-    "violations": [],
+default become_false := {
+	"allowed": true,
+	"violations": [],
 }
+job_template.become_enabled := false
 
-# Validate that job template name has correct organization and project name prefixes
-jt_become_validation := result if {
-    # Extract values from input
-    jt_become := object.get(input, ["job_template", "become_enabled"], "")
-
-    # Check if become is true
-    jt_become == "true"
-
-    result := {
-        "allowed": false,
-        "violations": [sprintf("Job template become enable not allowed and does not comply with standards", [jt_become])]
-    }
+become_false := {
+	"allowed": false,
+	"violations": ["Become user is not allow to launch jobs"],
+} if {
+	input.job_template.become_enabled == true
 }
